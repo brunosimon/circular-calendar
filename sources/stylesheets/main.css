@@ -1,0 +1,39 @@
+@font-face {
+    font-family:'vger';
+    src:url(../fonts/vger-regular.ttf);
+    font-weight:normal;
+}
+@font-face {
+    font-family:'vger';
+    src:url(../fonts/vger-bold.ttf);
+    font-weight:bold;
+}
+@font-face {
+    font-family:'vger';
+    src:url(../fonts/vger-light.ttf);
+    font-weight:lighter;
+}
+
+* {
+    padding:0;
+    margin:0;
+}
+
+.text-1 {
+    font-family:'vger';
+}
+
+.text-2 {
+    font-family:'vger';
+    font-weight:bold;
+}
+
+.text-3 {
+    font-family:'vger';
+    font-weight:lighter;
+}
+
+.circular-calendar {
+    width:800px;
+    height:800px;
+}

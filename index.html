@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Circular Calendar</title>
+    <link rel="stylesheet" href="sources/stylesheets/main.css">
+</head>
+<body>
+    <canvas class="circular-calendar"></canvas>
+
+    <div class="text text-1">TEXT</div>
+    <div class="text text-2">TEXT</div>
+    <div class="text text-3">TEXT</div>
+
+    <script src="sources/javascript/CircularCalendar.class.js"></script>
+    <script>
+
+        // Wait font loading
+        window.setTimeout( function()
+        {
+            // Circular Calendar
+            var circularCalendar = new CircularCalendar( {
+                canvas        : document.querySelector( '.circular-calendar' ),
+                width         : 1600,
+                height        : 1600,
+                sectors       : 10,
+                thickness     : 0.01,
+                circumferences:
+                {
+                    start: -Math.PI * 0.5,
+                    end  : Math.PI * 1
+                },
+                diameters:
+                {
+                    inner: 0.5,
+                    outer: 0.6
+                },
+                circles:
+                [
+                    {
+                        style : '#FF0095',
+                        name  : 'Tommy',
+                        values: [0,1,0,1,1,1,1,0,1,1]
+                    },
+                    {
+                        style : '#00FFE0',
+                        name  : 'Jerry',
+                        values: [0,0,0,0,1,1,1,1,1,0]
+                    },
+                    {
+                        style : '#81FF00',
+                        name  : 'Ben',
+                        values: [1,0,0,0,1,1,0,0,0,0]
+                    },
+                    {
+                        style : '#FFFB00',
+                        name  : 'John',
+                        values: [1,1,1,1,1,0,0,0,0,1]
+                    }
+                ]
+            } );
+        }, 100 );
+
+    </script>
+</body>
+</html>
