@@ -29,7 +29,7 @@ class CircularCalendar
     {
         this.drawBackground();
         this.drawCircles();
-        this.drawTitles();
+        // this.drawTitles();
         this.drawLegends();
     }
 
@@ -84,11 +84,11 @@ class CircularCalendar
     {
         this.canvas.context.textAlign    = 'center';
         this.canvas.context.textBaseline = 'alphabetic';
-        this.canvas.context.font         = 'bold 100px vger';
+        this.canvas.context.font         = 'bold 100px Helvetica';
         this.canvas.context.fillStyle    = '#eee';
         this.canvas.context.fillText( 'LOREM IPSUM', this.canvas.middle.x, 160 );
 
-        this.canvas.context.font = '40px vger';
+        this.canvas.context.font = '40px Helvetica';
         this.canvas.context.fillText( 'DOLORES', this.canvas.middle.x, 220 );
     }
 
@@ -105,7 +105,7 @@ class CircularCalendar
 
             this.canvas.context.textAlign    = 'right';
             this.canvas.context.textBaseline = 'middle';
-            this.canvas.context.font         = '18px vger';
+            this.canvas.context.font         = 'lighter 12px Helvetica';
             this.canvas.context.fillStyle = circle.style;
 
             this.canvas.context.fillText( circle.name.toUpperCase(), this.canvas.middle.x - 4, this.canvas.middle.y - radius );
