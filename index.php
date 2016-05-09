@@ -25,20 +25,21 @@
     <script src="sources/javascript/CircularCalendar.class.js"></script>
     <script>
 
-        // Wait font loading
-        window.setTimeout( function()
-        {
+        // // Wait font loading
+        // window.setTimeout( function()
+        // {
             // Circular Calendar
             var circularCalendar = new CircularCalendar( {
+                background    : '#111',
                 canvas        : document.querySelector( '.circular-calendar' ),
-                width         : 1600,
-                height        : 1600,
+                width         : 800 * 4,
+                height        : 800 * 4,
                 sectors       : <?= $data->sectors ?>,
-                thickness     : 0.01,
+                thickness     : 0.012,
                 circumferences:
                 {
                     start: -Math.PI * 0.5,
-                    end  : Math.PI * 1
+                    end  : Math.PI
                 },
                 diameters:
                 {
@@ -121,7 +122,7 @@
                 //     }
                 // ]
             } );
-        }, 100 );
+        // }, 100 );
 
     </script>
 </body>
