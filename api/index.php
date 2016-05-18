@@ -5,7 +5,7 @@ require_once '../classes/api.class.php';
 
 // Api
 $api = new Api(true);
-$api->token = '3ihtb6YJg6fw1POcGHsIW0Z8zN3ZscmK1CFXsH7XEyaJRRdzzlksd7teNN2ESv0cge-RNO_rQW3tiGNFi9c=';
+$api->token = 'hN8hI0fnsqA9WGarX2GJfIohDlGKR_v_Vl1GiwComSmCfuxHqTLfinbK-_f1lm4UG_9uBaNq-9y8MozGkTE=';
 
 // Repositories
 $repositories = array();
@@ -99,6 +99,7 @@ $styles = array(
     '#FFB500',
 );
 
+$temp_users = array();
 $users = array(
     array(
         'name'            => 'Charly Meignan',
@@ -110,7 +111,7 @@ $users = array(
     ),
     array(
         'name'            => 'Bruno Charrier',
-        'bitbucket_names' => array('bruno charrier','bruno charrier <bruno@uzik.com>')
+        'bitbucket_names' => array('bruno charrier <bruno@uzik.com>','bruno charrier')
     ),
     array(
         'name'            => 'Alexandre Pitton',
@@ -134,7 +135,7 @@ $users = array(
     ),
     array(
         'name'            => 'Thomas Le Gravier',
-        'bitbucket_names' => array('Thomas Le Gravier')
+        'bitbucket_names' => array('Thomas Le Gravier','Thomas Le gravier')
     ),
     array(
         'name'            => 'Émilie Rozes',
@@ -166,15 +167,15 @@ $users = array(
     ),
     array(
         'name'            => 'Bernard Vong',
-        'bitbucket_names' => array('bernardVong','Bernard <bernard@iMac-de-Bernard.local>','Bernard Vong')
+        'bitbucket_names' => array('bernardVong','Bernard <bernard@iMac-de-Bernard.local>','Bernard Vong <vong.bernard@gmail.com>')
     ),
     array(
         'name'            => 'Kévin La Rosa',
-        'bitbucket_names' => array('Kévin La Rosa','La Rosa Kevin','Kévin La Rosa <kevin.larosa@uzik.com>')
+        'bitbucket_names' => array('Kévin La Rosa <kevin.larosa@uzik.com>','La Rosa Kevin','Kévin La Rosa <larosa.kevin@gmail.com>')
     ),
     array(
         'name'            => 'Simon Duflos',
-        'bitbucket_names' => array('simon6023 <simon.duflos@gmail.com>')
+        'bitbucket_names' => array('Simon Dufos','simon6023 <simon.duflos@gmail.com>')
     ),
 );
 
@@ -200,6 +201,9 @@ foreach($repositories as $_repository)
             // In allowed
             foreach($users as $_key => $_user)
             {
+                if(!in_array($_commit->author, $temp_users))
+                    $temp_users[] = $_commit->author;
+
                 if(in_array($_commit->author, $_user['bitbucket_names']))
                 {
                     // Update value for day index

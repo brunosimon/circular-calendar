@@ -19,10 +19,6 @@ class Api
     {
         $data = null;
 
-        // Add token
-        if($this->token != null && empty($parameters['token']))
-            $parameters['access_token'] = $this->token;
-
         // Cache
         if($this->cache_active)
         {
@@ -32,6 +28,10 @@ class Api
             if($data)
                 return $data;
         }
+
+        // Add token
+        if($this->token != null && empty($parameters['token']))
+            $parameters['access_token'] = $this->token;
 
         // No cache
         if(!$data)
