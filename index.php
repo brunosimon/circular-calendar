@@ -17,11 +17,11 @@
 </head>
 <body>
     <canvas class="circular-calendar"></canvas>
-
+<!--
     <div class="text text-1">TEXT</div>
     <div class="text text-2">TEXT</div>
     <div class="text text-3">TEXT</div>
-
+ -->
     <script src="sources/javascript/CircularCalendar.class.js"></script>
     <script>
 
@@ -32,14 +32,14 @@
             var circularCalendar = new CircularCalendar( {
                 background    : '#111',
                 canvas        : document.querySelector( '.circular-calendar' ),
-                width         : 800 * 4,
-                height        : 800 * 4,
+                width         : 800 * 1,
+                height        : 800 * 1,
                 sectors       : <?= $data->sectors ?>,
                 thickness     : 0.012,
                 circumferences:
                 {
                     start: -Math.PI * 0.5,
-                    end  : Math.PI
+                    end  : Math.PI * 1.25
                 },
                 diameters:
                 {

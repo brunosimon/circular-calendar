@@ -32,34 +32,27 @@ class CircularCalendar
     {
         this.setColors()
         this.drawBackground()
-        this.drawMonths()
         this.drawCircles()
         // this.drawTitles()
         this.drawLegends()
+        this.drawMonths()
     }
 
     setColors()
     {
         let colors_sets = [
                 // ['#002A4A','#17607D','#FFF1CE','#FF9311','#D64700'],
-                ['#5C4B51','#8CBEB2','#F2EBBF','#F3B562','#F06060'],
-                // ['#106EFF','#476799','#10ECFF','#FF7F50','#CC3621'],
+                // ['#5C4B51','#8CBEB2','#F2EBBF','#F3B562','#F06060'],
                 // ['#25F98A','#9B2DCC','#2FFFFF','#F7FF6F','#FF5D3B'],
                 // ['#D93644','#F24968','#A63F52','#D9D3C1','#592222'],
-                // ['#FF7B5B','#E85A53','#FF689A','#E853CE','#E25BFF'],
-                // ['#FBDD79','#F5E3B9','#F08948','#D66031','#3C0C01'],
-
                 // ['#F20274','#7C65BF','#58B5F5','#F2A005','#F24402'],
-                // ['#F77087','#F77087','#792880','#591E8B','#26D6CE'],
                 // ['#225C5D','#B2D0C6','#FDB165','#EB7449','#D7472D'],
                 // ['#14ABCC','#3D8899','#00FFA1','#FF4640','#CC145B'],
                 // ['#96CEB4','#FFEEAD','#FF6F69','#FFCC5C','#AAD8B0'],
-                // ['#8FFF36','#FA397D','#3086FC','#FFF7FA','#FF7FA8'],
+                ['#8FFF36','#FA397D','#3086FC','#FFF7FA','#FF7FA8'],
             ],
             color_set   = colors_sets[ Math.floor( Math.random() * colors_sets.length ) ],
             color_index = 0
-
-        console.log(color_set);
 
         // Each circle
         for( let _circle_index in this.circles )
@@ -172,7 +165,8 @@ class CircularCalendar
         gradient.addColorStop( 0.15, 'rgba(255,255,255,1)' )
         gradient.addColorStop( 1, 'rgba(255,255,255,0)' )
 
-        this.canvas.context.lineWidth   = Math.round( this.canvas.width * 0.0005 )
+        // this.canvas.context.lineWidth   = Math.round( this.canvas.width * 0.0005 )
+        this.canvas.context.lineWidth   = Math.ceil( this.ratio * 0.5 )
         this.canvas.context.strokeStyle = gradient
 
         // Each month
