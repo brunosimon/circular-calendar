@@ -32,34 +32,16 @@ class CircularCalendar
     {
         this.setColors()
         this.drawBackground()
-        this.drawMonths()
         this.drawCircles()
-        // this.drawTitles()
+        this.drawMonths()
+        this.drawTitles()
         this.drawLegends()
     }
 
     setColors()
     {
-        let colors_sets = [
-                // ['#002A4A','#17607D','#FFF1CE','#FF9311','#D64700'],
-                ['#5C4B51','#8CBEB2','#F2EBBF','#F3B562','#F06060'],
-                // ['#106EFF','#476799','#10ECFF','#FF7F50','#CC3621'],
-                // ['#25F98A','#9B2DCC','#2FFFFF','#F7FF6F','#FF5D3B'],
-                // ['#D93644','#F24968','#A63F52','#D9D3C1','#592222'],
-                // ['#FF7B5B','#E85A53','#FF689A','#E853CE','#E25BFF'],
-                // ['#FBDD79','#F5E3B9','#F08948','#D66031','#3C0C01'],
-
-                // ['#F20274','#7C65BF','#58B5F5','#F2A005','#F24402'],
-                // ['#F77087','#F77087','#792880','#591E8B','#26D6CE'],
-                // ['#225C5D','#B2D0C6','#FDB165','#EB7449','#D7472D'],
-                // ['#14ABCC','#3D8899','#00FFA1','#FF4640','#CC145B'],
-                // ['#96CEB4','#FFEEAD','#FF6F69','#FFCC5C','#AAD8B0'],
-                // ['#8FFF36','#FA397D','#3086FC','#FFF7FA','#FF7FA8'],
-            ],
-            color_set   = colors_sets[ Math.floor( Math.random() * colors_sets.length ) ],
+        let color_set   = this.options.colors.circles[ Math.floor( Math.random() * this.options.colors.circles.length ) ],
             color_index = 0
-
-        console.log(color_set);
 
         // Each circle
         for( let _circle_index in this.circles )
@@ -72,7 +54,7 @@ class CircularCalendar
 
     drawBackground()
     {
-        this.canvas.context.fillStyle = this.options.background
+        this.canvas.context.fillStyle = this.options.colors.background
         this.canvas.context.fillRect( 0, 0, this.canvas.width, this.canvas.height )
     }
 
@@ -119,14 +101,14 @@ class CircularCalendar
 
     drawTitles()
     {
-        this.canvas.context.textAlign    = 'center'
-        this.canvas.context.textBaseline = 'alphabetic'
-        this.canvas.context.font         = 'bold 100px Helvetica'
-        this.canvas.context.fillStyle    = '#eee'
-        this.canvas.context.fillText( 'LOREM IPSUM', this.canvas.middle.x, 160 )
+        this.canvas.context.textAlign    = 'left'
+        this.canvas.context.textBaseline = 'top'
+        this.canvas.context.font         = 'bold ' + ( this.ratio * 50 ) + 'px Helvetica'
+        this.canvas.context.fillStyle    = this.options.colors.active
+        this.canvas.context.fillText( 'UZIK', this.ratio * 20, this.ratio * 20 )
 
-        this.canvas.context.font = '40px Helvetica'
-        this.canvas.context.fillText( 'DOLORES', this.canvas.middle.x, 220 )
+        this.canvas.context.font = 'lighter ' + ( this.ratio * 20 ) + 'px Helvetica'
+        this.canvas.context.fillText( 'COMMITS 2015', this.ratio * 20, this.ratio * ( 50 + 20 ) )
     }
 
     drawLegends()
@@ -151,6 +133,17 @@ class CircularCalendar
         }
     }
 
+    hexaToRGB( value )
+    {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec( value );
+
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
     drawMonths()
     {
         let sector_angle_length = ( this.options.circumferences.end - this.options.circumferences.start ) / this.options.sectors,
@@ -160,17 +153,21 @@ class CircularCalendar
             radius_max          = ( this.options.diameters.outer * this.canvas.width * 0.5 )
 
         // Style
-        var gradient = this.canvas.context.createRadialGradient(
-            this.canvas.middle.x,
-            this.canvas.middle.y,
-            radius_min * 0.75,
-            this.canvas.middle.x,
-            this.canvas.middle.y,
-            radius_max
-        )
-        gradient.addColorStop( 0, 'rgba(255,255,255,0)' )
-        gradient.addColorStop( 0.15, 'rgba(255,255,255,1)' )
-        gradient.addColorStop( 1, 'rgba(255,255,255,0)' )
+        let rgb_active_color = this.hexaToRGB(this.options.colors.active),
+            gradient         = this.canvas.context.createRadialGradient(
+                this.canvas.middle.x,
+                this.canvas.middle.y,
+                radius_min * 0.75,
+                this.canvas.middle.x,
+                this.canvas.middle.y,
+                radius_max
+            )
+
+
+
+        gradient.addColorStop( 0, `rgba(${rgb_active_color.r},${rgb_active_color.g},${rgb_active_color.b},0)` )
+        gradient.addColorStop( 0.15, `rgba(${rgb_active_color.r},${rgb_active_color.g},${rgb_active_color.b},1)` )
+        gradient.addColorStop( 1, `rgba(${rgb_active_color.r},${rgb_active_color.g},${rgb_active_color.b},0)` )
 
         this.canvas.context.lineWidth   = Math.round( this.canvas.width * 0.0005 )
         this.canvas.context.strokeStyle = gradient
@@ -207,7 +204,7 @@ class CircularCalendar
             this.canvas.context.textAlign    = 'center'
             this.canvas.context.textBaseline = 'middle'
             this.canvas.context.font         = 'lighter ' + text_size + 'px Helvetica'
-            this.canvas.context.fillStyle    = '#ccc'
+            this.canvas.context.fillStyle    = this.options.colors.active
             this.canvas.context.translate( this.canvas.middle.x, this.canvas.middle.y )
             this.canvas.context.rotate( ( month_angle + Math.PI * 0.5 ) )
             this.canvas.context.translate( 0, - radius_min * 0.875 )
