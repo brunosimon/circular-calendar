@@ -17,11 +17,11 @@
 </head>
 <body>
     <canvas class="circular-calendar"></canvas>
-
+<!--
     <div class="text text-1">TEXT</div>
     <div class="text text-2">TEXT</div>
     <div class="text text-3">TEXT</div>
-
+ -->
     <script src="sources/javascript/CircularCalendar.class.js"></script>
     <script>
 

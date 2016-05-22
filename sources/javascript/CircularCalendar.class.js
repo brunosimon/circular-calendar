@@ -36,6 +36,7 @@ class CircularCalendar
         this.drawMonths()
         this.drawTitles()
         this.drawLegends()
+        this.drawMonths()
     }
 
     setColors()
@@ -108,7 +109,7 @@ class CircularCalendar
         this.canvas.context.fillText( 'UZIK', this.ratio * 20, this.ratio * 20 )
 
         this.canvas.context.font = 'lighter ' + ( this.ratio * 20 ) + 'px Helvetica'
-        this.canvas.context.fillText( 'COMMITS 2015', this.ratio * 20, this.ratio * ( 50 + 20 ) )
+        this.canvas.context.fillText( 'COMMITS 2015', this.ratio * ( 20 + 2.8 ), this.ratio * ( 50 + 19 ) )
     }
 
     drawLegends()
@@ -169,7 +170,8 @@ class CircularCalendar
         gradient.addColorStop( 0.15, `rgba(${rgb_active_color.r},${rgb_active_color.g},${rgb_active_color.b},1)` )
         gradient.addColorStop( 1, `rgba(${rgb_active_color.r},${rgb_active_color.g},${rgb_active_color.b},0)` )
 
-        this.canvas.context.lineWidth   = Math.round( this.canvas.width * 0.0005 )
+        // this.canvas.context.lineWidth   = Math.round( this.canvas.width * 0.0005 )
+        this.canvas.context.lineWidth   = Math.ceil( this.ratio * 0.25 )
         this.canvas.context.strokeStyle = gradient
 
         // Each month
