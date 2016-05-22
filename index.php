@@ -55,7 +55,7 @@
                 // width         : 800 * 4,
                 // height        : 800 * 4,
                 width         : 4961,
-                height        : 7016,
+                height        : 7087,
                 sectors       : <?= $data->sectors ?>,
                 thickness     : 0.013,
                 circumferences:

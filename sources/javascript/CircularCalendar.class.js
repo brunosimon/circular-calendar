@@ -106,10 +106,10 @@ class CircularCalendar
         this.canvas.context.textBaseline = 'top'
         this.canvas.context.font         = 'bold ' + ( this.ratio * 50 ) + 'px Helvetica'
         this.canvas.context.fillStyle    = this.options.colors.active
-        this.canvas.context.fillText( 'UZIK', this.ratio * 20, this.ratio * 20 )
+        this.canvas.context.fillText( 'UZIK', this.ratio * 44, this.ratio * 38 )
 
         this.canvas.context.font = 'lighter ' + ( this.ratio * 20 ) + 'px Helvetica'
-        this.canvas.context.fillText( 'COMMITS 2015', this.ratio * ( 20 + 2.8 ), this.ratio * ( 50 + 19 ) )
+        this.canvas.context.fillText( 'COMMITS 2015', this.ratio * ( 44 + 2.8 ), this.ratio * ( 68 + 19 ) )
     }
 
     drawLegends()
